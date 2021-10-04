@@ -19,21 +19,29 @@ import './index.css'
 
 class EmojiGame extends Component {
   state = {
-    emojiList: [],
+    clickedList: [],
     topScore: 0,
     isGameInProgress: true,
   }
 
   resetGame = () => {
     this.setState({
-      emojiList: [],
+      clickedList: [],
       isGameInProgress: true,
     })
   }
 
   renderScoreCard = () => {
-    const {emojiList} = this.state
-    return <WinOrLoseCard reset={this.resetGame} score={emojiList.length} />
+    const {clickedList} = this.state
+    const {emojisList} = this.props
+    const isWon = clickedList.length === emojisList.length
+    return (
+      <WinOrLoseCard
+        won={isWon}
+        resetBut={this.resetGame}
+        score={clickedList.length}
+      />
+    )
   }
 
   finishAndSetTopScore = newScore => {
@@ -44,28 +52,27 @@ class EmojiGame extends Component {
     }
     this.setState({
       topScore: newTopScore,
-      emojiList: [],
       isGameInProgress: false,
     })
   }
 
   addElements = id => {
-    const {emojiList} = this.state
-    const ElementPresent = emojiList.includes(id)
+    const {clickedList} = this.state
+    const ElementPresent = clickedList.includes(id)
     if (ElementPresent) {
-      this.finishAndSetTopScore(emojiList.length)
+      this.finishAndSetTopScore(clickedList.length)
     } else {
-      if (parseInt(emojiList.length) === parseInt(12)) {
-        this.finishAndSetTopScore(emojiList.length)
+      if (parseInt(clickedList.length) === parseInt(12)) {
+        this.finishAndSetTopScore(clickedList.length)
       }
       this.setState(prevState => ({
-        emojiList: [...prevState.emojiList, id],
+        clickedList: [...prevState.clickedList, id],
       }))
     }
   }
 
   render() {
-    const {emojiList, isGameInProgress, topScore} = this.state
+    const {clickedList, isGameInProgress, topScore} = this.state
     const shuffledEmojisList = () => {
       const {emojisList} = this.props
       return emojisList.sort(() => Math.random() - 0.5)
@@ -73,7 +80,7 @@ class EmojiGame extends Component {
     return (
       <div className="mainContainer">
         <NavBar
-          score={emojiList.length}
+          score={clickedList.length}
           top={topScore}
           progress={isGameInProgress}
         />
@@ -92,7 +99,6 @@ class EmojiGame extends Component {
             this.renderScoreCard()
           )}
         </div>
-        <p>{emojiList.length}</p>
       </div>
     )
   }

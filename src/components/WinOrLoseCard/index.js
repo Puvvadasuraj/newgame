@@ -1,11 +1,11 @@
 import './index.css'
 
 const WinOrLoseCard = props => {
-  const {resetGame, score} = props
+  const {resetBut, score, won} = props
   let text
   let img
   let label
-  if (parseInt(score) === 12) {
+  if (won) {
     text = 'You Won'
     img = 'https://assets.ccbp.in/frontend/react-js/won-game-img.png'
     label = 'Best Score'
@@ -20,7 +20,7 @@ const WinOrLoseCard = props => {
         <h1 className="text">{text}</h1>
         <p className="score">{label}</p>
         <p className="scoreText">{score}/12</p>
-        <button type="button" className="resetBut" onClick={resetGame}>
+        <button type="button" className="resetBut" onClick={resetBut}>
           Play Again
         </button>
       </div>
