@@ -1,0 +1,32 @@
+.navContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff30;
+}
+
+.navPart1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+}
+
+.img {
+  height: 60px;
+}
+
+.navPart2 {
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+}
+
+.scoreElement {
+  padding-right: 100px;
+}

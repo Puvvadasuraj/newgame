@@ -1,0 +1,22 @@
+.mainContainer {
+  background-image: linear-gradient(150deg, #9796f0, #fbc7d4);
+  background-size: cover;
+  height: 100vh;
+}
+
+.ulContainer {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px;
+}
+
+.bottomContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
